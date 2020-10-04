@@ -4,7 +4,7 @@ var fedTime,lastFed,currentTime;
 var feed,addFood;
 var foodObj;
 var gameState,readState;
-var nextbg;
+var nextbg, bathroom, bedroom, outdoors, kitchen;
 
 function preload(){
 sleep=loadImage("Images/sleep.png");
@@ -24,7 +24,7 @@ gameRoom=loadImage("Images/gameroom.jpg");
 
 function setup() {
   database=firebase.database();
-  createCanvas(400,500);
+  createCanvas(700,500);
   
   foodObj = new Food();
   nextbg= createSprite(280, 100, 25, 25);
@@ -57,8 +57,16 @@ function setup() {
   addFood.mousePressed(addFoods);
 }
 
-function draw() {
 
+
+function draw() {
+ // bathrooms();
+  if(mousePressedOver(nextbg)){
+    bathroom= createSprite(350, 250, 700, 500);
+    bathroom.addImage(bathroom);
+    //bathroom.shapeColor="red";
+  }
+/*
   currentTime=hour();
   if(currentTime==(lastFed+1)){
       update("Playing");
@@ -70,7 +78,7 @@ function draw() {
    }
    else if(currentTime>(lastFed+2) && currentTime<=(lastFed+4)){
     update("Bathing");
-      foodObj.bathroom();
+      foodObj.b();
    }
    else{
     update("Hungry")
@@ -86,7 +94,7 @@ function draw() {
     feed.show();
     addFood.show();
     pou.addImage(pou);
-   }
+   }*/
  
   drawSprites();
 }
@@ -120,3 +128,12 @@ function update(state){
     gameState:state
   })
 }
+
+function bathrooms(){
+  if(mousePressedOver(nextbg)){
+    bathroom= createSprite(350, 250, 700, 500);
+    //bathroom.addImage('bathroom', bathroom);
+    bathroom.shapeColor="red";
+  }
+
+ }
